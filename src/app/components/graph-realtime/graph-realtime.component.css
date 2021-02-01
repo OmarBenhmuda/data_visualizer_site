@@ -1,0 +1,9 @@
+#graphName {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+#graphName:focus{
+  outline: none;
+}

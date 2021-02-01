@@ -1,0 +1,14 @@
+.graphChoice {
+  margin-top: 10px;
+  margin-left: 15px
+}
+
+.button {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+.button:focus{
+  outline: none;
+}
+

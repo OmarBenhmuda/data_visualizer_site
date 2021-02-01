@@ -1,0 +1,18 @@
+#dateInput {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+#dateInput:focus {
+  outline: none;
+}
+
+#graphName {
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+#graphName:focus{
+  outline: none;
+}

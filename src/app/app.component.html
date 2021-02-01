@@ -1,0 +1,8 @@
+<div class = "graphChoice">
+  <button class="button" mat-button (click)="graphType = 'realtime'">Realtime Graph</button>
+  <button class="button" mat-button (click)="graphType = 'fixedRange'">Fixed Range Graph</button>
+
+  <app-graph-fixed-range *ngIf='graphType === "fixedRange"'></app-graph-fixed-range>
+
+  <app-graph-realtime *ngIf='graphType === "realtime"'></app-graph-realtime>
+</div>

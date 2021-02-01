@@ -1,0 +1,15 @@
+<div>
+
+    <select id="graphName" [(ngModel)]="graphName" (change)="changeGraphName()">
+      <option value="SN1">SN1</option>
+      <option value="SN2">SN2</option>
+      <option value="SN3">SN3</option>
+      <option value="SN4">SN4</option>
+    </select>
+
+  <div>
+    <plotly-plot [data]="graph.data" [layout]="graph.layout" [config]="graph.config">
+    </plotly-plot>
+  </div>
+
+</div>
