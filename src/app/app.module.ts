@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphRealtimeComponent } from './components/graph-realtime/graph-realtime.component';
 import { GraphFixedRangeComponent } from './components/graph-fixed-range/graph-fixed-range.component';
-import { PlotlyModule } from 'angular-plotly.js';
+import { PlotlyViaWindowModule } from 'angular-plotly.js';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PlotlyModule,
+    PlotlyViaWindowModule,
     CommonModule,
     HttpClientModule,
     OwlDateTimeModule,
