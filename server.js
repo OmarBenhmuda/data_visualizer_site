@@ -20,6 +20,7 @@ app.use((req, res, next) => {
   next();
 })
 
+
 app.use(express.static('../workstudy-site/dist/workstudy-site/index.html')); //Serves resources from public folder
 
 db_config = {
@@ -57,6 +58,11 @@ function handleDisconnect() {
     }
   });
 }
+
+app.get('/', (req, res) => {
+  console.log('hello');
+  res.send('hello')
+})
 
 
 app.get('/data/:graphName', (req, res) => {
