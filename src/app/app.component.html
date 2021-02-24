@@ -1,8 +1,33 @@
-<div class = "graphChoice">
+<div class="graphChoice">
   <button class="button" mat-button (click)="graphType = 'realtime'">Realtime Graph</button>
   <button class="button" mat-button (click)="graphType = 'fixedRange'">Fixed Range Graph</button>
 
-  <app-graph-fixed-range *ngIf='graphType === "fixedRange"'></app-graph-fixed-range>
+  <div class="nodeSelector">
+    <input id="sn1Selector" type="checkbox" [checked]="sn1Selected" (change)="sn1Selected = !sn1Selected" />
+    <label for="sn1Selector">SN1</label>
+
+    <input id="sn2Selector" type="checkbox" [checked]="sn2Selected" (change)="sn2Selected = !sn2Selected" />
+    <label for="sn2Selector">SN2</label>
+
+    <input id="sn3Selector" type="checkbox" [checked]="sn3Selected" (change)="sn3Selected = !sn3Selected" />
+    <label for="sn3Selector">SN3</label>
+
+    <input id="sn4Selector" type="checkbox" [checked]="sn4Selected" (change)="sn4Selected = !sn4Selected" />
+    <label for="sn4Selector">SN4</label>
+  </div>
+
+
+  <div class="graphDiv" *ngIf='graphType === "fixedRange"'>
+    <app-graph-fixed-range class="graph" [graphName]="'SN1'" *ngIf='sn1Selected'></app-graph-fixed-range>
+
+    <app-graph-fixed-range class="graph" [graphName]="'SN2'" *ngIf='sn2Selected'></app-graph-fixed-range>
+
+    <app-graph-fixed-range class="graph" [graphName]="'SN3'" *ngIf='sn3Selected'></app-graph-fixed-range>
+
+    <app-graph-fixed-range class="graph" [graphName]="'SN4'" *ngIf='sn4Selected'></app-graph-fixed-range>
+  </div>
+
+
 
   <app-graph-realtime *ngIf='graphType === "realtime"'></app-graph-realtime>
 </div>

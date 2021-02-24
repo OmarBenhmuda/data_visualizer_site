@@ -3,6 +3,7 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Input,
 } from '@angular/core';
 import { Injectable } from '@angular/core';
 
@@ -18,7 +19,7 @@ import { DataService } from 'src/app/services/data.service';
 export class GraphFixedRangeComponent implements OnInit {
   public dateTimeRange: Date[];
 
-  graphName: string = 'SN1';
+  @Input() graphName: string;
 
   constructor(
     public dataService: DataService,
@@ -26,6 +27,9 @@ export class GraphFixedRangeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.graph.layout.title = 'Fixed Range - ' + this.graphName;
+
     this.dataService.getAll(this.graphName).subscribe((res) => {
       console.log(res);
 
@@ -51,16 +55,6 @@ export class GraphFixedRangeComponent implements OnInit {
       });
   }
 
-  changeGraphName() {
-    this.graph.layout.title = 'Fixed Range - ' + this.graphName;
-
-    this.dataService.getAll(this.graphName).subscribe((res) => {
-      this.graph.data[0].x = res['x'];
-      this.graph.data[0].y = res['y'];
-      this.changeDetectorRef.detectChanges();
-    });
-  }
-
   public graph = {
     data: [
       {
@@ -75,7 +69,7 @@ export class GraphFixedRangeComponent implements OnInit {
       },
     ],
     layout: {
-      title: 'Fixed Range - ' + this.graphName,
+      title: 'Fixed Range',
       xaxis: {
         title: 'Timestamp',
         rangemode: 'nonnegative',
@@ -88,7 +82,7 @@ export class GraphFixedRangeComponent implements OnInit {
       },
     },
     config: {
-      scrollZoom: true,
+      scrollZoom: false,
       responsive: true,
       displaylogo: false,
     },
