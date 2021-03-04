@@ -27,9 +27,7 @@ export class GraphFixedRangeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    this.graph.layout.title = 'Fixed Range - ' + this.graphName;
-
+    this.graph.layout.title = this.graphName
     this.dataService.getAll(this.graphName).subscribe((res) => {
       console.log(res);
 
@@ -63,13 +61,16 @@ export class GraphFixedRangeComponent implements OnInit {
         name: '',
         mode: 'lines+markers',
         line: {
-          color: '#387fba',
+          color: '#475473',
           width: 3,
+        },
+        marker: {
+          color: '#ff4d40',
         },
       },
     ],
     layout: {
-      title: 'Fixed Range',
+      title: '',
       xaxis: {
         title: 'Timestamp',
         rangemode: 'nonnegative',
@@ -80,6 +81,14 @@ export class GraphFixedRangeComponent implements OnInit {
         title: 'Value',
         rangemode: 'tozero',
       },
+      margin: {
+        l: 50,
+        r: 0,
+        t: 50,
+        b: 50,
+      },
+      // plot_bgcolor: 'grey',
+      // paper_bgcolor: 'grey',
     },
     config: {
       scrollZoom: false,

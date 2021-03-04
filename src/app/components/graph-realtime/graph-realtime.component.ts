@@ -2,6 +2,7 @@ import {
   ChangeDetectorRef,
   Component,
   destroyPlatform,
+  Input,
   OnInit,
 } from '@angular/core';
 import {
@@ -23,7 +24,7 @@ export class GraphRealtimeComponent implements OnInit {
   graphUpdater;
   timestamp = '';
 
-  graphName: string = 'SN1';
+  @Input() graphName: string;
 
   constructor(
     public dataService: DataService,
@@ -31,6 +32,7 @@ export class GraphRealtimeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.graph.layout.title = this.graphName;
     this.graphUpdater = setInterval(() => {
       this.dataService.getLastValue(this.graphName).subscribe((res) => {
         if (res['timestamp'] != this.timestamp) {
@@ -48,35 +50,35 @@ export class GraphRealtimeComponent implements OnInit {
     }, 1000);
   }
 
-  changeGraphName() {
-    clearInterval(this.graphUpdater);
+  // changeGraphName() {
+  //   clearInterval(this.graphUpdater);
 
-    this.graph.layout.title = 'Realtime - ' + this.graphName;
+  //   this.graph.layout.title = 'Realtime - ' + this.graphName;
 
-    this.graph.data[0].x = [];
-    this.graph.data[0].y = [];
+  //   this.graph.data[0].x = [];
+  //   this.graph.data[0].y = [];
 
-    this.xHolder = [];
-    this.yHolder = [];
+  //   this.xHolder = [];
+  //   this.yHolder = [];
 
-    this.timestamp = '';
+  //   this.timestamp = '';
 
-    this.graphUpdater = setInterval(() => {
-      this.dataService.getLastValue(this.graphName).subscribe((res) => {
-        if (res['timestamp'] != this.timestamp) {
-          this.xHolder.push(res['timestamp']);
-          this.yHolder.push(res['value']);
+  //   this.graphUpdater = setInterval(() => {
+  //     this.dataService.getLastValue(this.graphName).subscribe((res) => {
+  //       if (res['timestamp'] != this.timestamp) {
+  //         this.xHolder.push(res['timestamp']);
+  //         this.yHolder.push(res['value']);
 
-          this.setData(this.xHolder, this.yHolder);
+  //         this.setData(this.xHolder, this.yHolder);
 
-          this.timestamp = res['timestamp'];
-          console.log(this.graph.data[0].x);
+  //         this.timestamp = res['timestamp'];
+  //         console.log(this.graph.data[0].x);
 
-          this.changeDetectorRef.detectChanges();
-        }
-      });
-    }, 1000);
-  }
+  //         this.changeDetectorRef.detectChanges();
+  //       }
+  //     });
+  //   }, 1000);
+  // }
 
   setData(x, y) {
     this.graph.data[0].x = [].concat(x);
@@ -99,25 +101,37 @@ export class GraphRealtimeComponent implements OnInit {
         name: '',
         mode: 'lines+markers',
         line: {
-          color: '#387fba',
+          color: '#475473',
           width: 3,
+        },
+        marker: {
+          color: '#ff4d40',
         },
       },
     ],
     layout: {
-      title: 'Realtime - ' + this.graphName,
+      title: '',
       xaxis: {
         title: 'Timestamp',
         rangemode: 'nonnegative',
         type: 'date',
+        autorange: true,
       },
       yaxis: {
         title: 'Value',
         rangemode: 'tozero',
       },
+      margin: {
+        l: 50,
+        r: 0,
+        t: 50,
+        b: 50,
+      },
+      // plot_bgcolor: 'grey',
+      // paper_bgcolor: 'grey',
     },
     config: {
-      scrollZoom: true,
+      scrollZoom: false,
       responsive: true,
       displaylogo: false,
     },

@@ -1,20 +1,13 @@
-<div>
+<div class="container">
 
-  <div>
+  <div class="statusbar">
 
-    <input id="dateInput" placeholder="Date Time Range:" [style.width]="'350px'" [(ngModel)]="dateTimeRange"
-      [selectMode]="'range'" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1" (dateTimeInput)="changeGraphDomain()"
+    <input id="dateInput" placeholder="Date Time Range:" [(ngModel)]="dateTimeRange"
+       [selectMode]="'range'" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1" (dateTimeInput)="changeGraphDomain()"
       readonly="readonly">
-
-
   </div>
 
-
-
-
   <owl-date-time #dtRange1></owl-date-time>
-
-
 
   <plotly-plot [data]="graph.data" [layout]="graph.layout" [config]="graph.config">
   </plotly-plot>

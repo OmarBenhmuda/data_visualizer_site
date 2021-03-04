@@ -17,7 +17,7 @@
   </div>
 
 
-  <div class="graphDiv" *ngIf='graphType === "fixedRange"'>
+  <div class="graph-container" *ngIf='graphType === "fixedRange"'>
     <app-graph-fixed-range class="graph" [graphName]="'SN1'" *ngIf='sn1Selected'></app-graph-fixed-range>
 
     <app-graph-fixed-range class="graph" [graphName]="'SN2'" *ngIf='sn2Selected'></app-graph-fixed-range>
@@ -27,7 +27,16 @@
     <app-graph-fixed-range class="graph" [graphName]="'SN4'" *ngIf='sn4Selected'></app-graph-fixed-range>
   </div>
 
+  <div class="graph-container" *ngIf='graphType === "realtime"'>
+
+    <app-graph-realtime class="graph" [graphName]="'SN1'" *ngIf='sn1Selected'></app-graph-realtime>
+
+    <app-graph-realtime class="graph" [graphName]="'SN2'" *ngIf='sn2Selected'></app-graph-realtime>
+
+    <app-graph-realtime class="graph" [graphName]="'SN3'" *ngIf='sn3Selected'></app-graph-realtime>
+
+    <app-graph-realtime class="graph" [graphName]="'SN4'" *ngIf='sn4Selected'></app-graph-realtime>
+  </div>
 
 
-  <app-graph-realtime *ngIf='graphType === "realtime"'></app-graph-realtime>
 </div>

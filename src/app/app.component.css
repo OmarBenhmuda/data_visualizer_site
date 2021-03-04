@@ -8,11 +8,27 @@
   margin-right: 10px;
   border-radius: 10px;
 }
-.button:focus{
+
+.button:focus {
   outline: none;
 }
 
-.nodeSelector{
+.nodeSelector {
   padding: 10px;
 }
 
+.graph-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  row-gap: 30px;
+  padding-right: 40px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.graph {
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}

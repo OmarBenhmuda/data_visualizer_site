@@ -15,8 +15,8 @@ export class AppComponent {
   graphLabel: string = 'SN1';
   graphType: string = 'fixedRange';
 
-  sn1Selected: boolean = false;
-  sn2Selected: boolean = false;
-  sn3Selected: boolean = false;
-  sn4Selected: boolean = false;
+  sn1Selected: boolean = true;
+  sn2Selected: boolean = true;
+  sn3Selected: boolean = true;
+  sn4Selected: boolean = true;
 }
