@@ -110,7 +110,7 @@ export class GraphRealtimeComponent implements OnInit {
       },
     ],
     layout: {
-      height: 200,
+      height: 250,
       title: '',
       xaxis: {
         title: 'Timestamp',

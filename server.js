@@ -65,6 +65,8 @@ app.get('/', (req, res) => {
 })
 
 
+
+
 app.get('/data/:graphName', (req, res) => {
   const graphName = req.params.graphName;
 
@@ -72,14 +74,27 @@ app.get('/data/:graphName', (req, res) => {
   connection.query(sql, (e, results) => {
     if (e) { handleDisconnect() };
 
+    let dateTracker = 0;
+
     let data = {
       x: [],
       y: []
     }
     if (typeof results != 'undefined') {
       for (let i = 0; i < results.length; i++) {
-        data.x.push((results[i].timestamp));
-        data.y.push(results[i].value)
+        if (i == 0) {
+          dateTracker = results[i].timestamp.getDate();
+        }
+        if (dateTracker != results[i].timestamp.getDate()) {
+          data.x.push(null);
+          data.y.push(null)
+          data.x.push((results[i].timestamp));
+          data.y.push(results[i].value)
+          dateTracker = results[i].timestamp.getDate();
+        } else {
+          data.x.push((results[i].timestamp));
+          data.y.push(results[i].value)
+        }
       }
     }
 
@@ -101,9 +116,22 @@ app.get('/data/domain/:graphName/:from/:to', (req, res) => {
       x: [],
       y: []
     }
-    for (let i = 0; i < results.length; i++) {
-      data.x.push((results[i].timestamp));
-      data.y.push(results[i].value)
+    if (typeof results != 'undefined') {
+      for (let i = 0; i < results.length; i++) {
+        if (i == 0) {
+          dateTracker = results[i].timestamp.getDate();
+        }
+        if (dateTracker != results[i].timestamp.getDate()) {
+          data.x.push(null);
+          data.y.push(null)
+          data.x.push((results[i].timestamp));
+          data.y.push(results[i].value)
+          dateTracker = results[i].timestamp.getDate();
+        } else {
+          data.x.push((results[i].timestamp));
+          data.y.push(results[i].value)
+        }
+      }
     }
     return res.send(data);
   })
@@ -128,28 +156,8 @@ app.get('/data/realtime/:graphName', (req, res) => {
 
 
 
-//                                                    // unused function to change date in seconds to a readable date
-// function toDateTime(secs) {
-//   let d = new Date(Date.UTC(1970, 0, 1));
-//   d.setSeconds(secs);
-//   d.setHours(d.getHours() - 2);
 
 
-//   let currentHour = d.getUTCHours();
-//   currentHour = ("0" + currentHour).slice(-2);
-
-//   let currentMinute = d.getUTCMinutes();
-//   currentMinute = ("0" + currentMinute).slice(-2);
-
-//   let currentSecond = d.getUTCSeconds();
-//   currentSecond = ("0" + currentSecond).slice(-2);
-
-//   let
-
-//   const date = d.getUTCFullYear() + "-" + d.getUTCMonth() + "-" + d.getUTCDate() + " " + currentHour + ":" + currentMinute + ":" + currentSecond;
-//   // const clock = d.getHours() + ":" + d.getMinutes();
-//   return date;
-// }
 
 
 setInterval(function () {

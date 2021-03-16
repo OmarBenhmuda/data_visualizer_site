@@ -27,7 +27,7 @@ export class GraphFixedRangeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.graph.layout.title = this.graphName
+    this.graph.layout.title = this.graphName;
     this.dataService.getAll(this.graphName).subscribe((res) => {
       console.log(res);
 
@@ -67,10 +67,11 @@ export class GraphFixedRangeComponent implements OnInit {
         marker: {
           color: '#ff4d40',
         },
+        connectgaps: false,
       },
     ],
     layout: {
-      height: 200,
+      height: 250,
       title: '',
       xaxis: {
         title: 'Timestamp',

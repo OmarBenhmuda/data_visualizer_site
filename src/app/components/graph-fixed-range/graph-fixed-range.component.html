@@ -2,7 +2,7 @@
 
   <div class="statusbar">
 
-    <input id="dateInput" placeholder="Date Time Range:" [(ngModel)]="dateTimeRange"
+    <input id="dateInput" placeholder="Select {{graphName}} Date Time Range..." [(ngModel)]="dateTimeRange"
        [selectMode]="'range'" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1" (dateTimeInput)="changeGraphDomain()"
       readonly="readonly">
   </div>
