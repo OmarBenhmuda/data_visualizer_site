@@ -20,9 +20,6 @@ app.use((req, res, next) => {
   next();
 })
 
-
-app.use(express.static('../workstudy-site/dist/workstudy-site/index.html')); //Serves resources from public folder
-
 db_config = {
   host: '23.229.134.169',
   user: 'orfteam',
@@ -67,7 +64,7 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/data/:graphName', (req, res) => {
+app.get('/data/:graphName', async(req, res) => {
   const graphName = req.params.graphName;
 
   const sql = `SELECT * FROM samd.${graphName} GROUP BY timest;`;
@@ -102,7 +99,7 @@ app.get('/data/:graphName', (req, res) => {
   })
 })
 
-app.get('/data/domain/:graphName/:from/:to', (req, res) => {
+app.get('/data/domain/:graphName/:from/:to', async(req, res) => {
   const graphName = req.params.graphName;
   const from = req.params.from;
   const to = req.params.to;
@@ -138,7 +135,7 @@ app.get('/data/domain/:graphName/:from/:to', (req, res) => {
 })
 
 
-app.get('/data/realtime/:graphName', (req, res) => {
+app.get('/data/realtime/:graphName', async(req, res) => {
   const graphName = req.params.graphName;
 
   let sql = `SELECT * FROM samd.${graphName} ORDER BY timest DESC LIMIT 1;`

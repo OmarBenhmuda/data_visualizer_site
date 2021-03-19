@@ -43,7 +43,8 @@ export class GraphRealtimeComponent implements OnInit {
 
           this.timestamp = res['timestamp'];
           console.log(this.graph.data[0].x);
-
+          this.graph.layout.xaxis.showticklabels = true;
+          this.graph.layout.yaxis.showticklabels = true;
           this.changeDetectorRef.detectChanges();
         }
       });
@@ -107,6 +108,7 @@ export class GraphRealtimeComponent implements OnInit {
         marker: {
           color: '#ff4d40',
         },
+        connectgaps: false,
       },
     ],
     layout: {
@@ -115,12 +117,16 @@ export class GraphRealtimeComponent implements OnInit {
       xaxis: {
         title: 'Timestamp',
         rangemode: 'nonnegative',
-        type: 'date',
         autorange: true,
+        showticklabels: false,
+        zeroline: false,
+        showgrid: false,
       },
       yaxis: {
         title: 'Value',
         rangemode: 'tozero',
+        showticklabels: false,
+        zeroline: false,
       },
       margin: {
         l: 50,

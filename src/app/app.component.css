@@ -28,7 +28,10 @@
 }
 
 .graph {
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  height: 330px;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 10px 7px rgba(150, 150, 150, 0.377), 0 1px 7px rgba(150, 150, 150, 0.377);
+
 }

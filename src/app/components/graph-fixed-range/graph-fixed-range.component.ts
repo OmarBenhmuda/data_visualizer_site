@@ -33,6 +33,8 @@ export class GraphFixedRangeComponent implements OnInit {
 
       this.graph.data[0].x = res['x'];
       this.graph.data[0].y = res['y'];
+      this.graph.layout.xaxis.showticklabels = true;
+      this.graph.layout.yaxis.showticklabels = true;
       this.changeDetectorRef.detectChanges();
     });
   }
@@ -49,6 +51,8 @@ export class GraphFixedRangeComponent implements OnInit {
 
         this.graph.data[0].x = res['x'];
         this.graph.data[0].y = res['y'];
+        this.graph.layout.xaxis.showticklabels = true;
+        this.graph.layout.yaxis.showticklabels = true;
         this.changeDetectorRef.detectChanges();
       });
   }
@@ -71,17 +75,21 @@ export class GraphFixedRangeComponent implements OnInit {
       },
     ],
     layout: {
-      height: 250,
+      height: 280,
       title: '',
       xaxis: {
-        title: 'Timestamp',
+        // title: 'Timestamp',
         rangemode: 'nonnegative',
-        type: 'date',
         autorange: true,
+        showticklabels: false,
+        zeroline: false,
+        showgrid: false,
       },
       yaxis: {
-        title: 'Value',
+        // title: 'Value',
         rangemode: 'tozero',
+        showticklabels: false,
+        zeroline: false,
       },
       margin: {
         l: 50,

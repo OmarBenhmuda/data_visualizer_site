@@ -5,7 +5,9 @@
   margin: auto;
   width: 280px;
   padding: 7px;
-  border-radius: 2px;
+  border-radius: 20px;
+  border: 1px solid grey;
+  box-shadow: 0 1px 5px rgba(150, 150, 150, 0.377), 0 1px 5px rgba(150, 150, 150, 0.377);
   border-color: #475473;
 }
 
