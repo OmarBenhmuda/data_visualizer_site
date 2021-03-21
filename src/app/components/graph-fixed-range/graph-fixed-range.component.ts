@@ -27,8 +27,12 @@ export class GraphFixedRangeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log("hello");
+
     this.graph.layout.title = this.graphName;
     this.dataService.getAll(this.graphName).subscribe((res) => {
+      console.log('hi');
+
       console.log(res);
 
       this.graph.data[0].x = res['x'];

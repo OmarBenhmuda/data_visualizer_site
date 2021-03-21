@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const cors = require("cors");
 const mysql = require('mysql');
@@ -7,13 +8,13 @@ const helmet = require('helmet');
 const app = express();
 app.use(cors());
 app.use(compression());
-app.use(helmet());
 
 const PORT = 3000;
 
 app.listen(PORT, () => {
-  console.log(`Backend running on port: ${PORT}`)
+  console.log(`Running on port ${PORT}...`)
 })
+
 //Logging requests
 app.use((req, res, next) => {
   console.log(`${req.method} request for ${req.url}`);
@@ -31,7 +32,6 @@ db_config = {
 let connection = mysql.createConnection(db_config);
 connection.connect(error => {
   if (!error) {
-    console.log("connected")
   } else {
     console.log("error" + JSON.stringify(error, undefined, 2))
   }
@@ -56,27 +56,24 @@ function handleDisconnect() {
   });
 }
 
-app.get('/', (req, res) => {
-  console.log('hello');
-  res.send('hello')
-})
-
-
-
-
-app.get('/data/:graphName', async(req, res) => {
+app.get('/data/:graphName', async (req, res) => {
   const graphName = req.params.graphName;
 
+
   const sql = `SELECT * FROM samd.${graphName} GROUP BY timest;`;
+
+  const results = connection.query(sql);
+
+  let dateTracker = 0;
+
+  let data = {
+    x: [],
+    y: []
+  }
+
   connection.query(sql, (e, results) => {
     if (e) { handleDisconnect() };
 
-    let dateTracker = 0;
-
-    let data = {
-      x: [],
-      y: []
-    }
     if (typeof results != 'undefined') {
       for (let i = 0; i < results.length; i++) {
         if (i == 0) {
@@ -94,20 +91,23 @@ app.get('/data/:graphName', async(req, res) => {
         }
       }
     }
-
     return res.send(data);
   })
+
 })
 
-app.get('/data/domain/:graphName/:from/:to', async(req, res) => {
+app.get('/data/domain/:graphName/:from/:to', async (req, res) => {
   const graphName = req.params.graphName;
   const from = req.params.from;
   const to = req.params.to;
 
 
   const sql = `SELECT * FROM samd.${graphName} WHERE timest BETWEEN ${from} AND ${to} GROUP BY timest;`;
+
+  const results = await connection.query(sql);
   connection.query(sql, (e, results) => {
     if (e) { handleDisconnect() };
+
 
     let data = {
       x: [],
@@ -135,7 +135,7 @@ app.get('/data/domain/:graphName/:from/:to', async(req, res) => {
 })
 
 
-app.get('/data/realtime/:graphName', async(req, res) => {
+app.get('/data/realtime/:graphName', async (req, res) => {
   const graphName = req.params.graphName;
 
   let sql = `SELECT * FROM samd.${graphName} ORDER BY timest DESC LIMIT 1;`
