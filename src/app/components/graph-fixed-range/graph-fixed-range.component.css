@@ -1,6 +1,9 @@
+.container {
+  text-align: center;
+  width: 650px;
+}
 
-
-#dateInput {
+.dateInput {
   text-align: center;
   margin: auto;
   width: 280px;
@@ -11,10 +14,14 @@
   border-color: #475473;
 }
 
-#dateInput:focus {
+.dateInput:focus {
   outline: none;
 }
 
-.container {
-  text-align: center;
+.graph {
+  padding: 5px;
+}
+
+.dateSelector {
+  padding: 5px;
 }

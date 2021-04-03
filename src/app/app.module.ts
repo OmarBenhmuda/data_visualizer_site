@@ -13,6 +13,9 @@ import { GraphFixedRangeComponent } from './components/graph-fixed-range/graph-f
 import { PlotlyViaWindowModule } from 'angular-plotly.js';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +33,9 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatCheckboxModule,
   ],
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
   bootstrap: [AppComponent],

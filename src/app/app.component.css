@@ -1,37 +1,53 @@
+.container {
+  margin: 10px 15px 10px 15px;
+  padding-bottom: 30px;
+}
+
+.nav {
+  text-align: center;
+}
+
+#options {
+  width: 600px;
+  padding: 10px 20px 60px 20px;
+  margin: 0px auto 30px auto;
+  border-radius: 15px;
+  /* border: 1px solid black; */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.377), 0 0px 0px rgba(0, 0, 0, 0.377);
+}
+
+.statusbarLabels {
+  margin-bottom: 49px;
+}
+
 .graphChoice {
+  float: left;
+}
+
+.nodeSelectorContainer {
   margin-top: 10px;
-  margin-left: 15px
-}
-
-.button {
-  padding: 10px;
-  margin-right: 10px;
-  border-radius: 10px;
-}
-
-.button:focus {
-  outline: none;
+  float: right;
 }
 
 .nodeSelector {
-  padding: 10px;
+  margin-left: 15px;
+  margin-right: 5px;
 }
 
 .graph-container {
+  width: max-content;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   gap: 30px;
   row-gap: 30px;
-  padding-right: 40px;
-  margin-top: 50px;
-  margin-bottom: 50px;
 }
 
 .graph {
   height: 330px;
-  margin: 15px;
+  width: max-content;
+  margin: auto;
   padding: 15px;
-  border-radius: 20px;
-  box-shadow: 0 10px 7px rgba(150, 150, 150, 0.377), 0 1px 7px rgba(150, 150, 150, 0.377);
-
+  border-radius: 15px;
+  box-shadow: 0 1px 7px rgba(150, 150, 150, 0.377), 0 1px 7px rgba(150, 150, 150, 0.377);
 }

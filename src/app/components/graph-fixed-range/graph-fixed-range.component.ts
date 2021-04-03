@@ -5,9 +5,7 @@ import {
   ChangeDetectorRef,
   Input,
 } from '@angular/core';
-import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -27,7 +25,7 @@ export class GraphFixedRangeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("hello");
+    console.log('hello');
 
     this.graph.layout.title = this.graphName;
     this.dataService.getAll(this.graphName).subscribe((res) => {

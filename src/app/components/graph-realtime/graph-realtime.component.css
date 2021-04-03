@@ -1,1 +1,8 @@
+.container {
+  text-align: center;
+  width: 650px;
+}
 
+.graph {
+  padding: 5px;
+}

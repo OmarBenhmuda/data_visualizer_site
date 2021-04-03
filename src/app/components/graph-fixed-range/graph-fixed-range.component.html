@@ -1,17 +1,22 @@
 <div class="container">
 
 
-
-  <plotly-plot [data]="graph.data" [layout]="graph.layout" [config]="graph.config">
-  </plotly-plot>
-
-
-  <div class="statusbar">
-
-    <input id="dateInput" placeholder="Select {{graphName}} Date Time Range..." [(ngModel)]="dateTimeRange"
-      [selectMode]="'range'" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1"
-      (dateTimeInput)="changeGraphDomain()" readonly="readonly">
+  <div class="graph">
+    <plotly-plot [data]="graph.data" [layout]="graph.layout" [config]="graph.config">
+    </plotly-plot>
   </div>
 
-  <owl-date-time #dtRange1></owl-date-time>
+
+
+  <div class="dateSelector">
+    <input class="dateInput" placeholder="Select {{graphName}} Date Time Range..." [(ngModel)]="dateTimeRange"
+      [selectMode]="'range'" [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1"
+      (dateTimeInput)="changeGraphDomain()" readonly="readonly">
+
+    <owl-date-time #dtRange1></owl-date-time>
+  </div>
+
+
+
+
 </div>

@@ -51,36 +51,6 @@ export class GraphRealtimeComponent implements OnInit {
     }, 1000);
   }
 
-  // changeGraphName() {
-  //   clearInterval(this.graphUpdater);
-
-  //   this.graph.layout.title = 'Realtime - ' + this.graphName;
-
-  //   this.graph.data[0].x = [];
-  //   this.graph.data[0].y = [];
-
-  //   this.xHolder = [];
-  //   this.yHolder = [];
-
-  //   this.timestamp = '';
-
-  //   this.graphUpdater = setInterval(() => {
-  //     this.dataService.getLastValue(this.graphName).subscribe((res) => {
-  //       if (res['timestamp'] != this.timestamp) {
-  //         this.xHolder.push(res['timestamp']);
-  //         this.yHolder.push(res['value']);
-
-  //         this.setData(this.xHolder, this.yHolder);
-
-  //         this.timestamp = res['timestamp'];
-  //         console.log(this.graph.data[0].x);
-
-  //         this.changeDetectorRef.detectChanges();
-  //       }
-  //     });
-  //   }, 1000);
-  // }
-
   setData(x, y) {
     this.graph.data[0].x = [].concat(x);
     this.graph.data[0].y = [].concat(y);
@@ -112,10 +82,10 @@ export class GraphRealtimeComponent implements OnInit {
       },
     ],
     layout: {
-      height: 250,
+      height: 280,
       title: '',
       xaxis: {
-        title: 'Timestamp',
+        // title: 'Timestamp',
         rangemode: 'nonnegative',
         autorange: true,
         showticklabels: false,
@@ -123,7 +93,7 @@ export class GraphRealtimeComponent implements OnInit {
         showgrid: false,
       },
       yaxis: {
-        title: 'Value',
+        // title: 'Value',
         rangemode: 'tozero',
         showticklabels: false,
         zeroline: false,

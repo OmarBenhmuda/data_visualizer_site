@@ -3,17 +3,19 @@ const express = require('express')
 const cors = require("cors");
 const mysql = require('mysql');
 const compression = require('compression');
-const helmet = require('helmet');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(compression());
 
-const PORT = 3000;
+app.use(express.static(path.join(__dirname, '/dist/workstudy-site')));
 
-app.listen(PORT, () => {
-  console.log(`Running on port ${PORT}...`)
-})
+app.get('', (req, res) => {
+  res.sendFile(path.join(__dirname + '/dist/workstudy-site'));
+});
+
+
 
 //Logging requests
 app.use((req, res, next) => {
@@ -29,13 +31,7 @@ db_config = {
   timezone: '+00:00'
 }
 
-let connection = mysql.createConnection(db_config);
-connection.connect(error => {
-  if (!error) {
-  } else {
-    console.log("error" + JSON.stringify(error, undefined, 2))
-  }
-});
+
 
 
 function handleDisconnect() {
@@ -56,13 +52,21 @@ function handleDisconnect() {
   });
 }
 
+
+
 app.get('/data/:graphName', async (req, res) => {
+  let connection = mysql.createConnection(db_config);
+  connection.connect(error => {
+    if (!error) {
+    } else {
+      console.log("error" + JSON.stringify(error, undefined, 2))
+    }
+  });
+
   const graphName = req.params.graphName;
 
 
   const sql = `SELECT * FROM samd.${graphName} GROUP BY timest;`;
-
-  const results = connection.query(sql);
 
   let dateTracker = 0;
 
@@ -91,12 +95,27 @@ app.get('/data/:graphName', async (req, res) => {
         }
       }
     }
+
+    connection.end()
     return res.send(data);
+
   })
+
+
 
 })
 
 app.get('/data/domain/:graphName/:from/:to', async (req, res) => {
+
+  let connection = mysql.createConnection(db_config);
+  connection.connect(error => {
+    if (!error) {
+    } else {
+      console.log("error" + JSON.stringify(error, undefined, 2))
+    }
+  });
+
+
   const graphName = req.params.graphName;
   const from = req.params.from;
   const to = req.params.to;
@@ -130,12 +149,22 @@ app.get('/data/domain/:graphName/:from/:to', async (req, res) => {
         }
       }
     }
+    connection.end();
     return res.send(data);
   })
 })
 
 
 app.get('/data/realtime/:graphName', async (req, res) => {
+
+  let connection = mysql.createConnection(db_config);
+  connection.connect(error => {
+    if (!error) {
+    } else {
+      console.log("error" + JSON.stringify(error, undefined, 2))
+    }
+  });
+
   const graphName = req.params.graphName;
 
   let sql = `SELECT * FROM samd.${graphName} ORDER BY timest DESC LIMIT 1;`
@@ -146,17 +175,18 @@ app.get('/data/realtime/:graphName', async (req, res) => {
       value: result[0]['value']
     }
 
+    connection.end();
+
     return res.send(data)
   });
 })
 
 
 
+const PORT = 3000;
+
+app.listen(PORT, () => {
+  console.log(`Running on port ${PORT}...`)
+})
 
 
-
-
-
-setInterval(function () {
-  connection.query('SELECT 1');
-}, 5000);

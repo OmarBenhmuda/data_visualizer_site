@@ -1,19 +1,46 @@
-<div class="graphChoice">
-  <button class="button" mat-button (click)="graphType = 'realtime'">Realtime Graph</button>
-  <button class="button" mat-button (click)="graphType = 'fixedRange'">Fixed Range Graph</button>
+<div class="container">
 
-  <div class="nodeSelector">
-    <input id="sn1Selector" type="checkbox" [checked]="sn1Selected" (change)="sn1Selected = !sn1Selected" />
-    <label for="sn1Selector">SN1</label>
+  <div class="nav">
+    <h1>Database Visualizer</h1>
+  </div>
 
-    <input id="sn2Selector" type="checkbox" [checked]="sn2Selected" (change)="sn2Selected = !sn2Selected" />
-    <label for="sn2Selector">SN2</label>
 
-    <input id="sn3Selector" type="checkbox" [checked]="sn3Selected" (change)="sn3Selected = !sn3Selected" />
-    <label for="sn3Selector">SN3</label>
 
-    <input id="sn4Selector" type="checkbox" [checked]="sn4Selected" (change)="sn4Selected = !sn4Selected" />
-    <label for="sn4Selector">SN4</label>
+  <div id="options">
+
+    <div class="statusbarLabels">
+      <h2 style="float: left;">Graph Type</h2>
+      <h2 style="float: right;">Node Selector</h2>
+    </div>
+
+
+    <div>
+      <mat-form-field color="primary" class="graphChoice" appearance="legacy">
+        <mat-select class="dropdown" [(value)]="graphType">
+          <mat-option value="fixedRange">Fixed Range</mat-option>
+          <mat-option value="realtime">Realtime</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+
+
+    <div class="nodeSelectorContainer">
+      <label class="nodeSelector" for="sn1Selector">SN1</label>
+      <mat-checkbox id="sn1Selector" color="primary" [checked]="sn1Selected" (change)="sn1Selected = !sn1Selected"></mat-checkbox>
+
+      <label class="nodeSelector" for="sn2Selector">SN2</label>
+      <mat-checkbox id="sn2Selector" color="primary" [checked]="sn2Selected" (change)="sn2Selected = !sn2Selected"></mat-checkbox>
+
+      <label class="nodeSelector" for="sn3Selector">SN3</label>
+      <mat-checkbox id="sn3Selector" color="primary" [checked]="sn3Selected" (change)="sn3Selected = !sn3Selected"></mat-checkbox>
+
+      <label class="nodeSelector" for="sn4Selector">SN4</label>
+      <mat-checkbox id="sn4Selector" color="primary" [checked]="sn4Selected" (change)="sn4Selected = !sn4Selected"></mat-checkbox>
+
+    </div>
+
   </div>
 
 
