@@ -11,10 +11,6 @@ app.use(compression());
 
 app.use(express.static(path.join(__dirname, '/dist/workstudy-site')));
 
-app.get('', (req, res) => {
-  res.sendFile(path.join(__dirname + '/dist/workstudy-site'));
-});
-
 
 
 //Logging requests
