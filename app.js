@@ -5,6 +5,8 @@ const mysql = require('mysql');
 const compression = require('compression');
 const path = require('path');
 
+let db_config = require('./db')
+
 const app = express();
 app.use(cors());
 app.use(compression());
@@ -19,13 +21,6 @@ app.use((req, res, next) => {
   next();
 })
 
-db_config = {
-  host: '23.229.134.169',
-  user: 'orfteam',
-  password: 'orfproject',
-  database: 'samd',
-  timezone: '+00:00'
-}
 
 
 
@@ -62,7 +57,7 @@ app.get('/data/:graphName', async (req, res) => {
   const graphName = req.params.graphName;
 
 
-  const sql = `SELECT * FROM samd.${graphName} GROUP BY timest;`;
+  const sql = `SELECT * FROM samdb.${graphName} GROUP BY timest;`;
 
   let dateTracker = 0;
 
@@ -117,7 +112,7 @@ app.get('/data/domain/:graphName/:from/:to', async (req, res) => {
   const to = req.params.to;
 
 
-  const sql = `SELECT * FROM samd.${graphName} WHERE timest BETWEEN ${from} AND ${to} GROUP BY timest;`;
+  const sql = `SELECT * FROM samdb.${graphName} WHERE timest BETWEEN ${from} AND ${to} GROUP BY timest;`;
 
   const results = await connection.query(sql);
   connection.query(sql, (e, results) => {
@@ -163,7 +158,7 @@ app.get('/data/realtime/:graphName', async (req, res) => {
 
   const graphName = req.params.graphName;
 
-  let sql = `SELECT * FROM samd.${graphName} ORDER BY timest DESC LIMIT 1;`
+  let sql = `SELECT * FROM samdb.${graphName} ORDER BY timest DESC LIMIT 1;`
   connection.query(sql, function (error, result) {
     if (error) throw error;
     let data = {
