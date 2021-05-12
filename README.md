@@ -18,13 +18,18 @@ Setting up
 Installing Angular
 If angular is already installed skip to the next step
 To install angular run the command below on powershell/terminal
+
 npm install -g @angular/cli
+
 Next run:
+
 ng v
+
 If you get an error like below:
 ng : File C:\Users\Omar\AppData\Roaming\npm\ng.ps1 cannot be loaded because running scripts is disabled on this system.  For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170,
 Right click on the start button on the bottom left, and click on “Windows PowerShell (Admin)”
 Run the follow command below and enter “Y” after in order to resolve the error:
+
 set-ExecutionPolicy Undefined -Scope CurrentUser
 
 Installing Node Dependencies
