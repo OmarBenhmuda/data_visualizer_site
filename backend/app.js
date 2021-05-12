@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(compression());
 
-app.use(express.static(path.join(__dirname, '/dist/workstudy-site')));
+app.use(express.static(path.join(__dirname, '../dist/workstudy-site')));
 
 
 
