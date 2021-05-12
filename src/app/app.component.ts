@@ -13,7 +13,6 @@ export class AppComponent {
   constructor(public dataService: DataService) {}
   title = 'workstudy-site';
 
-  graphLabel: string = 'SN1';
   graphType: string = 'fixedRange';
 
   sn1Selected: boolean = true;

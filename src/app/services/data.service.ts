@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject, Observable, BehaviorSubject } from 'rxjs';
 
-const url = `http://${window.location.hostname}:3000`;
-const testurl = `http://${window.location.hostname}:3001`;
+const port = '3000';
+
+const url = `http://${window.location.hostname}:${port}`;
 @Injectable({
   providedIn: 'root',
 })
@@ -20,9 +20,5 @@ export class DataService {
 
   getLastValue(graphName: string) {
     return this.http.get(`${url}/data/realtime/${graphName}`);
-  }
-
-  getLastValueTest() {
-    return this.http.get(`${testurl}/data/realtime`);
   }
 }
